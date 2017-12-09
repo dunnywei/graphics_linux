@@ -17,7 +17,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QWidget" name="Widget" native="true">
+   <widget class="QWidget" name="OGLWidget" native="true">
     <property name="geometry">
      <rect>
       <x>790</x>
