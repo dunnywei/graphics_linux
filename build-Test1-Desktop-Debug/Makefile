@@ -36,9 +36,7 @@ DISTNAME      = Test11.0.0
 DISTDIR = /home/don/Desktop/graphics_linux/build-Test1-Desktop-Debug/.tmp/Test11.0.0
 LINK          = g++
 LFLAGS        = 
-LIBS          = $(SUBLIBS) -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread -lGLEW -lglfw3
-#LIBS +=-lGLEW -lglfw3 -lGL -lX11 -lXi -lXrandr -lXxf86vm -lXinerama -lXcursor -lrt -lm -pthread
- 
+LIBS          = $(SUBLIBS) -lGLEW -lGLU -lX11 -lXxf86vm -lrt -lm -pthread -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -51,9 +49,11 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../Test1/main.cpp \
-		../Test1/mainwindow.cpp moc_mainwindow.cpp
+		../Test1/mainwindow.cpp \
+		../Test1/oglwidget.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
+		oglwidget.o \
 		moc_mainwindow.o
 DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib64/qt5/mkspecs/common/unix.conf \
@@ -113,8 +113,10 @@ DIST          = /usr/lib64/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib64/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib64/qt5/mkspecs/features/yacc.prf \
 		/usr/lib64/qt5/mkspecs/features/lex.prf \
-		../Test1/Test1.pro ../Test1/mainwindow.h ../Test1/main.cpp \
-		../Test1/mainwindow.cpp
+		../Test1/Test1.pro ../Test1/mainwindow.h \
+		../Test1/oglwidget.h ../Test1/main.cpp \
+		../Test1/mainwindow.cpp \
+		../Test1/oglwidget.cpp
 QMAKE_TARGET  = Test1
 DESTDIR       = 
 TARGET        = Test1
@@ -266,8 +268,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib64/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Test1/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Test1/main.cpp ../Test1/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Test1/mainwindow.h ../Test1/oglwidget.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Test1/main.cpp ../Test1/mainwindow.cpp ../Test1/oglwidget.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Test1/mainwindow.ui $(DISTDIR)/
 
 
@@ -330,6 +332,9 @@ main.o: ../Test1/main.cpp ../Test1/mainwindow.h
 mainwindow.o: ../Test1/mainwindow.cpp ../Test1/mainwindow.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Test1/mainwindow.cpp
+
+oglwidget.o: ../Test1/oglwidget.cpp ../Test1/oglwidget.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o oglwidget.o ../Test1/oglwidget.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

@@ -24,8 +24,28 @@ protected:
 #include <QWidget>
 #include <QOpenGLWidget>
 
+
 #include <GL/gl.h>
 #include <GL/glu.h>
+
+class OGLWidget:public QOpenGLWidget
+{
+public:
+    OGLWidget(QWidget *parent=0);
+    ~OGLWidget();
+
+protected:
+    /*
+    void intializeGL();
+    void resizeGL(int w,int h);
+    void paintGL();
+    */
+    void initializeGL();
+    void resizeGL(int w, int h);
+    void paintGL();
+
+
+};
 
 
 
