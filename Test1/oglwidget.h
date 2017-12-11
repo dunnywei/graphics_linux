@@ -1,17 +1,17 @@
 #ifndef OGLWIDGET_H
 #define OGLWIDGET_H
 
+
+#include<GL/glew.h>
+#include <GL/glu.h>
+#include <GL/gl.h>
+
 #include <QWidget>
 #include <QOpenGLWidget>
 
-/*
-#include <gl/GLU.h>
-#include <gl/GL.h>
-*/
 
 
-#include <GL/glu.h>
-#include <GL/gl.h>
+
 
 
 class OGLWidget : public QOpenGLWidget
