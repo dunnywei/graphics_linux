@@ -1,6 +1,7 @@
 #include <GL/glew.h>
 #include <GL/gl.h>
 
+
 #include <QtOpenGL/QGLWidget>
 
 #include "mainwindow.h"
@@ -22,9 +23,9 @@ void MeGlwindow::initalizaeGL()
 
     GLfloat verts[]=
     {
-        +0.0f, +100.0f,
-        -100.0f,-100.0f,
-        +100.0f,-100.0f,
+        +0.0f, +10.0f
+        -10.0f,-10.0f
+        +10.0f,-10.0f
     };
     GLuint mybufferID;
     glGenBuffers(1, &mybufferID);
@@ -40,16 +41,17 @@ void MeGlwindow::initalizaeGL()
 void MeGlwindow::paintGL()
 {
 
-    QSize viewport_size = size();
-    glViewport(0, 0, viewport_size.width(), viewport_size.height());
+    //QSize viewport_size = size();
+    //glViewport(0, 0, viewport_size.width(), viewport_size.height());
 
     glDrawArrays(GL_TRIANGLES, 0, 3);
 
 	
-    //glClearColor(1, 0, 0, 1);
-    //glClear(GL_COLOR_BUFFER_BIT);
-	
-	//glViewport(0, 0, width(), height());
+    glClearColor(1, 0, 0, 1);
+    glClear(GL_COLOR_BUFFER_BIT);
+    swapBuffers();
+
+	glViewport(0, 0, width(), height());
 	/*
 	QSize viewport_size = size();
 	glViewport(0, 0, viewport_size.width(), viewport_size.height());
