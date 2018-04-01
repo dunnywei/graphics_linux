@@ -3,20 +3,25 @@
 
 #include <QMainWindow>
 
+
 namespace Ui {
-class MainWindow;
+class MeGlwindow;
 }
 
-class MainWindow : public QMainWindow
+class MeGlwindow : public QMainWindow
 {
-    Q_OBJECT
+    //Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    //explicit MeGlwindow(QWidget *parent = 0);
+    MeGlwindow(QWidget *parent = 0);
+    void initalizaeGL();
+    void paintGL();
+    void resizeGL(int,int);
+    ~MeGlwindow(){};
 
 private:
-    Ui::MainWindow *ui;
+    Ui::MeGlwindow *ui;
 };
 
 #endif // MAINWINDOW_H
