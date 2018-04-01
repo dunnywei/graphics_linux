@@ -5,46 +5,49 @@
 
 #include "mainwindow.h"
 
-MeGlwindow::MeGlwindow(QWidget *parent) :QMainWindow(parent)
+/*
+MeGlwindow::MeGlwindow(QWidget *parent) :QGLWidget(parent,shareWidget,NULL)
 {
+    //const QGLWidget * shareWidget = 0, Qt::WindowFlags f = 0)
     //swapBuffers();
 
 
 }
+*/
 
 void MeGlwindow::initalizaeGL()
 {
 
-	glewInit();
+    glewInit();
 
-	GLfloat verts[]=
-	{
-		+0.0f, +100.0f,
-		-100.0f,-100.0f,
-		+100.0f,-100.0f,
-	};
-	GLuint mybufferID;
-	glGenBuffers(1, &mybufferID);
-	glBindBuffer(GL_ARRAY_BUFFER, mybufferID);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
+    GLfloat verts[]=
+    {
+        +0.0f, +100.0f,
+        -100.0f,-100.0f,
+        +100.0f,-100.0f,
+    };
+    GLuint mybufferID;
+    glGenBuffers(1, &mybufferID);
+    glBindBuffer(GL_ARRAY_BUFFER, mybufferID);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
 
-	glEnableVertexAttribArray(0);//first attribute
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
+    glEnableVertexAttribArray(0);//first attribute
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
 
 
 
 }
 void MeGlwindow::paintGL()
 {
-    /*
-	QSize viewport_size = size();
-	glViewport(0, 0, viewport_size.width(), viewport_size.height());
 
-	glDrawArrays(GL_TRIANGLES, 0, 3);
-    */
+    QSize viewport_size = size();
+    glViewport(0, 0, viewport_size.width(), viewport_size.height());
+
+    glDrawArrays(GL_TRIANGLES, 0, 3);
+
 	
-    glClearColor(1, 0, 0, 1);
-    glClear(GL_COLOR_BUFFER_BIT);
+    //glClearColor(1, 0, 0, 1);
+    //glClear(GL_COLOR_BUFFER_BIT);
 	
 	//glViewport(0, 0, width(), height());
 	/*

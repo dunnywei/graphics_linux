@@ -2,23 +2,29 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include <QtOpenGL/QGLWidget>
 
 namespace Ui {
 class MeGlwindow;
 }
 
-class MeGlwindow : public QMainWindow
+class MeGlwindow : public QGLWidget
 {
-    //Q_OBJECT
+    Q_OBJECT
 
 public:
     //explicit MeGlwindow(QWidget *parent = 0);
-    MeGlwindow(QWidget *parent = 0);
+    MeGlwindow(QWidget *parent):QGLWidget(parent)
+    {
+
+    }
     void initalizaeGL();
     void paintGL();
     void resizeGL(int,int);
-    ~MeGlwindow(){};
+    ~MeGlwindow()
+    {
+
+    }
 
 private:
     Ui::MeGlwindow *ui;

@@ -4,9 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       += core gui widgets opengl 
 
 LIBS +=-lGLEW -lglfw -lglut -lGLEW -lGLU -lGL -lX11 -lXxf86vm -lrt -lm -pthread -lXrandr -lXinerama
 
@@ -14,8 +12,6 @@ TARGET = Test1
 TEMPLATE = app
 
 SOURCES += main.cpp \
-           mainwindow.cpp
+    mainwindow.cpp
 
 HEADERS  += mainwindow.h
-
-FORMS    += mainwindow.ui
