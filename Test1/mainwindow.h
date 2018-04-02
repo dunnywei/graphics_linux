@@ -16,15 +16,18 @@ public:
     //explicit MeGlwindow(QWidget *parent = 0);
     MeGlwindow(QWidget *parent):QGLWidget(parent)
     {
+        setAutoBufferSwap(true);
 
     }
-    void initalizaeGL();
-    void paintGL();
-    void resizeGL(int,int);
+    
     ~MeGlwindow()
     {
 
     }
+protected:
+    void initalizaeGL();
+    void paintGL();
+    void resizeGL(int,int);
 
 private:
     Ui::MeGlwindow *ui;
