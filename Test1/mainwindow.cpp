@@ -19,20 +19,30 @@ MeGlwindow::MeGlwindow(QWidget *parent) :QGLWidget(parent,shareWidget,NULL)
 void MeGlwindow::initalizaeGL()
 {
 
-    glewInit();
+        glewInit();
 
-	GLfloat verts[] =
-	{
-		+0.0f, +1.0f,
-		-1.0f, -1.0f,
-		+1.0f, -1.0f,
-	};
-	GLuint myBufferID;
-	glGenBuffers(1, &myBufferID);
-	glBindBuffer(GL_ARRAY_BUFFER, myBufferID);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(verts),verts, GL_STATIC_DRAW);
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
+    GLfloat verts[] =
+    {
+        +0.0f, +0.0f,
+        +1.0f, +1.0f,
+        -1.0f, +1.0f,
+        -1.0f, -1.0f,
+        +1.0f, -1.0f,
+    };
+    GLuint myBufferID;
+    glGenBuffers(1, &myBufferID);
+    glBindBuffer(GL_ARRAY_BUFFER, myBufferID);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(verts),
+        verts, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
+
+    GLushort indices[] = { 3,1,2, 0,3,4 };
+    GLuint indexBufferID;
+    glGenBuffers(1, &indexBufferID);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferID);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices),
+        indices, GL_STATIC_DRAW);
 
 
 
@@ -40,22 +50,11 @@ void MeGlwindow::initalizaeGL()
 }
 void MeGlwindow::paintGL()
 {
-    //adding
-    glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    QSize viewport_size = size();
-    glViewport(0, 0, viewport_size.width(), viewport_size.height());
-
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glFrustum(-1, 1, -1, 1, 5, 7); // near and far match your triangle Z distance
-
-    glMatrixMode(GL_MODELVIEW);
-
-    //glViewport(0, 0, width(), height());
-	glDrawArrays(GL_TRIANGLES, 0, 3);
-    //swapBuffers();
+    glViewport(0, 0, width(), height());
+    //glDrawArrays(GL_TRIANGLES, 0, 6);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, (void*) 0);
 
     //end of adding
 }
